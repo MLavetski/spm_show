@@ -16,14 +16,12 @@ SOURCES += main.cpp\
         sshow.cpp \
     sshowsub.cpp \
     showprofile.cpp \
-    imlabel.cpp \
-    customlistwidget.cpp
+    imlabel.cpp
 
 HEADERS  += sshow.h \
     sshowsub.h \
     showprofile.h \
-    imlabel.h \
-    customlistwidget.h
+    imlabel.h
 
 FORMS    += sshow.ui \
     sshowsub.ui \
@@ -33,3 +31,6 @@ FORMS    += sshow.ui \
 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.1
 
 RC_ICONS += "qr code.ico"
+
+RESOURCES += \
+    resources.qrc

@@ -11,17 +11,8 @@
 void sshowsub::resizeWindow()
 {
     int biggerOne;
-    if(ui->label->width()>ui->lineEdit->width())
-        biggerOne = ui->label->width();
-    else
-        biggerOne = ui->lineEdit->width();
-    ui->line->setGeometry((biggerOne),0,20,this->height());
-    ui->fieldselect->setGeometry((ui->line->x()+30),(ui->fieldselect->y()),(ui->fieldselect->width()),(ui->fieldselect->height()));
-    ui->profBut->setGeometry((ui->line->x()+24),(ui->profBut->y()),(ui->profBut->width()),(ui->profBut->height()));
-    ui->infoButton->setGeometry((ui->line->x()+90),(ui->infoButton->y()),(ui->infoButton->width()),(ui->infoButton->height()));
-    ui->ExitB->setGeometry((ui->line->x()+54),(ui->ExitB->y()),(ui->ExitB->width()),(ui->ExitB->height()));
-    ui->pointView->setGeometry((ui->line->x()+10),(ui->pointView->y()),(ui->pointView->width()),(ui->pointView->height()));
-    this->setFixedSize(((ui->pointView->x())+(ui->pointView->width())+1),(52+(ui->label->height())+22));
+    biggerOne = ui->label->width();
+    this->setFixedSize(((ui->label->x())+(ui->label->width())+10),(52+(ui->label->height())+22));
     this->statusBar()->setSizeGripEnabled(false);
 }
 
@@ -48,7 +39,7 @@ void sshowsub::showim(int num, int Nx, int Ny)
         else value = (0,0,0);
         field.setPixel(i%Nx,floor(i/Nx),value);
     }
-    ui->label->setGeometry(10, 40, Nx, Ny);
+    ui->label->setGeometry(ui->label->x(), ui->label->y(), Nx, Ny);
     QDesktopWidget wid;
 
     int screenWidth = wid.screen()->width();
@@ -65,7 +56,6 @@ void sshowsub::showim(int num, int Nx, int Ny)
 
 void sshowsub::drawProfileLine()
 {
-    updatePointView();
     QImage fieldLine = field;
     QPainter pen(&fieldLine);
     pen.setCompositionMode(QPainter::RasterOp_SourceXorDestination);
@@ -99,18 +89,6 @@ void sshowsub::drawProfileLine()
     ui->label->setPixmap(QPixmap::fromImage(fieldLine));
 }
 
-void sshowsub::updatePointView()
-{
-    ui->pointView->clear();
-    for(int i=0;i<avaliablePointsX.size();i++)
-    {
-        QString index = "A";
-        index[0]=index[0].unicode()+i;
-        QString name = index + "  " + QString::number(avaliablePointsX[i])
-                + "  " + QString::number(avaliablePointsY[i]);
-        ui->pointView->addItem(name);
-    }
-}
 
 void sshowsub::openspm()
 {
@@ -120,7 +98,6 @@ void sshowsub::openspm()
             MTname.setText("Не выбран .spm файл. Пожалуйста, выберите.");
             MTname.exec();
             inputfilename = QFileDialog::getOpenFileName(this, tr("Открыть .spm файл"),"/", tr("Spm files (*.spm)"));
-            ui->lineEdit->setText(inputfilename);
         }
     QFile spm(inputfilename);//Opening input file
         if(!spm.open(QIODevice::ReadOnly))
@@ -189,7 +166,6 @@ sshowsub::sshowsub(QWidget *parent, QString filename) :
 {
     inputfilename = filename;
     ui->setupUi(this);
-    ui->lineEdit->setText(inputfilename);
     openspm();
 }
 
@@ -334,7 +310,6 @@ void sshowsub::on_label_mousePressedLeft(int x, int y)
             avaliablePointsX[i]=x;
             avaliablePointsY[i]=y;
             drawProfileLine();
-            return;
         }
     }
 }
@@ -349,9 +324,10 @@ void sshowsub::on_label_mousePressedRight(int x, int y)
             avaliablePointsX.removeAt(i);
             avaliablePointsY.removeAt(i);
             drawProfileLine();
-            return;
         }
     }
+    if(avaliablePointsX.size() < 2)
+        ui->profBut->setEnabled(false);
 }
 
 
@@ -364,38 +340,20 @@ void sshowsub::on_label_doubleCicked(int x, int y)
     QString newName = "A";
     newName[0]=newName[0].unicode()+(avaliablePointsX.size());
     drawProfileLine();
+    if(avaliablePointsX.size() > 1)
+        ui->profBut->setEnabled(true);
 }
 
-void sshowsub::on_pointView_mousePressedRight(int x, int y)
-{
-    qint16 chosenOne = ui->pointView->row(ui->pointView->itemAt(x,y));
-    if(chosenOne==-1)
-    {
-        QMessageBox nope;
-        nope.setText("Нет точек, доступных для удаления.");
-        nope.setIcon(QMessageBox::Critical);
-        nope.exec();
-        return;
-    }
-    avaliablePointsX.removeAt(chosenOne);
-    avaliablePointsY.removeAt(chosenOne);
-    ui->pointView->setCurrentRow(chosenOne-1);
-    drawProfileLine();
-}
 
 void sshowsub::on_infoButton_clicked()
 {
     QMessageBox info;
     QString MT = NULL;
     info.setText(MT + "*Двойнок клик по полю - создание точки в конце линии профиля в данной точке.\n"
-                 "*Кнопка 'Добавить точку' - создание точки в конце линии профиля в левом верхнем углу изображения.\n"
-                 "*Кнопка 'Удалить точку' - удаление точки, выбранной в поле ручного ввода.\n"
                  "*Правый клик по точке - удалить данную точку.\n"
                  "*Удержать левую кнопку по точке - Перемещение точки.\n"
-                 "*Кнопка 'Профиль' создания среза значений на основе выбраный точек\n"
-                 "*Ручной ввод позволяет более точно редактировать положение точек.\n"
-                 "*После выбора редактируемой точки в выпадающем меню, возможно изменение ее координат с помощью двух полей,"
-                 "а также, при выборе 'Изменять только выбранную точку' можно редактировать положение точки левым кликом по полю.");
+                 "*Кнопка 'Построить профиль' - создать срез значений на основе выбраных точек.\n"
+                 "*Кнопка 'Выбор цвета' - выбор основного цвета для отображения поверхности.");
     info.setIcon(QMessageBox::Information);
     info.exec();
 }
@@ -409,4 +367,11 @@ void sshowsub::on_PickColorBut_clicked()
     B=selectedColor.blue();
     int index = ui->fieldselect->currentIndex();
     showim(index, Nx[index], Ny[index]);
+}
+
+void sshowsub::on_pushButton_clicked()
+{
+    QMessageBox yep;
+    yep.setText("yep");
+    yep.exec();
 }

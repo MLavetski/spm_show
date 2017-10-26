@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>432</width>
+    <width>270</width>
     <height>330</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>432</width>
+    <width>270</width>
     <height>330</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>432</width>
+    <width>270</width>
     <height>330</height>
    </size>
   </property>
@@ -38,112 +38,106 @@
    </size>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>10</y>
-      <width>261</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QComboBox" name="fieldselect">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>90</x>
       <y>10</y>
       <width>121</width>
-      <height>22</height>
+      <height>24</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
       <width>121</width>
-      <height>22</height>
+      <height>24</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>121</width>
-      <height>22</height>
+      <height>24</height>
      </size>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>0</y>
-      <width>20</width>
-      <height>600</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="ExitB">
     <property name="geometry">
      <rect>
-      <x>312</x>
-      <y>100</y>
-      <width>75</width>
-      <height>23</height>
+      <x>240</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>75</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>75</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
+    <property name="toolTip">
+     <string>Закрыть файл</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
-     <string>Выход</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/new/icos/EXITICO.ico</normaloff>:/new/icos/EXITICO.ico</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="profBut">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>285</x>
-      <y>40</y>
-      <width>65</width>
-      <height>23</height>
+      <x>34</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>65</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>65</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
+    <property name="toolTip">
+     <string>Построить профиль</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
-     <string>Профиль</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/new/icos/BUILDPROFILEICO.ico</normaloff>:/new/icos/BUILDPROFILEICO.ico</iconset>
     </property>
    </widget>
    <widget class="imlabel" name="label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>52</y>
+      <y>50</y>
       <width>256</width>
       <height>256</height>
      </rect>
@@ -161,88 +155,106 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="CustomListWidget" name="pointView">
-    <property name="geometry">
-     <rect>
-      <x>273</x>
-      <y>141</y>
-      <width>159</width>
-      <height>165</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>159</width>
-      <height>165</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>159</width>
-      <height>165</height>
-     </size>
-    </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::AllEditTriggers</set>
-    </property>
-    <property name="alternatingRowColors">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="infoButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>40</y>
-      <width>65</width>
-      <height>23</height>
+      <x>60</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>65</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>65</width>
-      <height>23</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
+    <property name="toolTip">
+     <string>Помощь</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
-     <string>Инфо</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/new/icos/HELPICO.ico</normaloff>:/new/icos/HELPICO.ico</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="PickColorBut">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>70</y>
-      <width>80</width>
-      <height>21</height>
+      <x>8</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>80</width>
-      <height>21</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>80</width>
-      <height>21</height>
+      <width>24</width>
+      <height>24</height>
      </size>
     </property>
-    <property name="text">
+    <property name="toolTip">
      <string>Выбор цвета</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/new/icos/POLORPICKERICO.ico</normaloff>:/new/icos/POLORPICKERICO.ico</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>214</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>Отображение в виде 3d плоскости</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/new/icos/3DICO.ico</normaloff>:/new/icos/3DICO.ico</iconset>
     </property>
    </widget>
   </widget>
@@ -259,16 +271,10 @@
     <signal>mousePressedRight(int,int)</signal>
    </slots>
   </customwidget>
-  <customwidget>
-   <class>CustomListWidget</class>
-   <extends>QListWidget</extends>
-   <header location="global">customlistwidget.h</header>
-   <slots>
-    <signal>mousePressedRight()</signal>
-   </slots>
-  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>ExitB</sender>

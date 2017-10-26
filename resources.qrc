@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/icos">
+        <file>EXITICO.ico</file>
+        <file>BUILDPROFILEICO.ico</file>
+        <file>HELPICO.ico</file>
+        <file>POLORPICKERICO.ico</file>
+        <file>3DICO.ico</file>
+    </qresource>
+</RCC>

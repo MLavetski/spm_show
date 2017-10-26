@@ -47,12 +47,12 @@ private slots:
     void on_label_doubleCicked(int , int y);
 
 
-    void on_pointView_mousePressedRight(int x, int y);
-
-
     void on_infoButton_clicked();
 
     void on_PickColorBut_clicked();
+
+
+    void on_pushButton_clicked();
 
 private:
     Ui::sshowsub *ui;
@@ -62,7 +62,6 @@ private:
     void showim(int num, int Nx, int Ny);
     void drawProfileLine();
     void getPointsOnLineFromAToB();
-    void updatePointView();
     void resizeWindow();
 };
 

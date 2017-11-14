@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "showprofile.h"
+#include "surface.h"
 #include "imlabel.h"
 
 namespace Ui {
@@ -51,12 +52,12 @@ private slots:
 
     void on_PickColorBut_clicked();
 
-
-    void on_pushButton_clicked();
+    void on_surfaceBut_clicked();
 
 private:
     Ui::sshowsub *ui;
     QVector<showprofile*> proflist;
+    surface *surface3d;
     int openedprof = 0;
     void openspm();
     void showim(int num, int Nx, int Ny);

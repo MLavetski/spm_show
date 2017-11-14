@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets datavisualization
 
 TARGET = spm_show
 TEMPLATE = app
@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         sshow.cpp \
     sshowsub.cpp \
     showprofile.cpp \
-    imlabel.cpp
+    imlabel.cpp \
+    surface.cpp
 
 HEADERS  += sshow.h \
     sshowsub.h \
     showprofile.h \
-    imlabel.h
+    imlabel.h \
+    surface.h
 
 FORMS    += sshow.ui \
     sshowsub.ui \
@@ -34,3 +36,5 @@ RC_ICONS += "qr code.ico"
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES +=

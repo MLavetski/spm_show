@@ -1,5 +1,6 @@
 #include "sshowsub.h"
 #include "ui_sshowsub.h"
+#include "surface.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QMouseEvent>
@@ -50,6 +51,8 @@ void sshowsub::showim(int num, int Nx, int Ny)
         this->setGeometry((screenWidth/2)-(this->width()/2),(screenHeight/2)-(this->height()/2),Nx+320,Ny+94);
     }
     ui->label->setPixmap(QPixmap::fromImage(field));
+    QString save = "D://testImageFor3d.png";
+    field.save(save);
     resizeWindow();
     drawProfileLine();
 }
@@ -156,7 +159,6 @@ void sshowsub::openspm()
         QString inputfilenameCopy = inputfilename;
         QString WindowTitle = inputfilenameCopy.remove(inputfilename.left(extPointPos));
         sshowsub::setWindowTitle(WindowTitle);
-        int currInd = ui->fieldselect->currentIndex();
         showim(0, Nx[0], Ny[0]);
 }
 
@@ -278,6 +280,7 @@ void sshowsub::on_profBut_clicked()
     val.clear();
 }
 
+
 void sshowsub::on_label_mouseMoved(int x, int y)
 {
     int curInd = ui->fieldselect->currentIndex();
@@ -330,9 +333,6 @@ void sshowsub::on_label_mousePressedRight(int x, int y)
         ui->profBut->setEnabled(false);
 }
 
-
-
-
 void sshowsub::on_label_doubleCicked(int x, int y)
 {
     avaliablePointsX.append(x);
@@ -369,9 +369,8 @@ void sshowsub::on_PickColorBut_clicked()
     showim(index, Nx[index], Ny[index]);
 }
 
-void sshowsub::on_pushButton_clicked()
+void sshowsub::on_surfaceBut_clicked()
 {
-    QMessageBox yep;
-    yep.setText("yep");
-    yep.exec();
+    int index = ui->fieldselect->currentIndex();
+    surface3d = new surface( dataMuliplied[index], Nx[index], Ny[index]);
 }

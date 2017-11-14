@@ -225,7 +225,7 @@
       <normaloff>:/new/icos/POLORPICKERICO.ico</normaloff>:/new/icos/POLORPICKERICO.ico</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="surfaceBut">
     <property name="geometry">
      <rect>
       <x>214</x>
@@ -233,21 +233,6 @@
       <width>24</width>
       <height>24</height>
      </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>24</width>
-      <height>24</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>24</width>
-      <height>24</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>Отображение в виде 3d плоскости</string>
     </property>
     <property name="text">
      <string/>

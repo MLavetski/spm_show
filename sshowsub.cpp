@@ -372,5 +372,6 @@ void sshowsub::on_PickColorBut_clicked()
 void sshowsub::on_surfaceBut_clicked()
 {
     int index = ui->fieldselect->currentIndex();
-    surface3d = new surface( dataMuliplied[index], Nx[index], Ny[index]);
+    surface3d = new surface(this, dataMuliplied[index], Nx[index], Ny[index]);
+    surface3d->show();
 }

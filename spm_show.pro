@@ -27,7 +27,8 @@ HEADERS  += sshow.h \
 
 FORMS    += sshow.ui \
     sshowsub.ui \
-    showprofile.ui
+    showprofile.ui \
+    surface.ui
 
 
 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.1

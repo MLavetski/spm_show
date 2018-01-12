@@ -35,27 +35,27 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Тема</string>
+     <string>Сплошной цвет</string>
     </property>
-    <widget class="QMenu" name="menu_2">
-     <property name="title">
-      <string>Градиенты</string>
-     </property>
-     <widget class="QMenu" name="menu_3">
-      <property name="title">
-       <string>Выбрать градиент</string>
-      </property>
-      <addaction name="chkdCold"/>
-      <addaction name="chkdWarm"/>
-      <addaction name="chkdNeon"/>
-     </widget>
-     <addaction name="useGrad"/>
-     <addaction name="menu_3"/>
-    </widget>
-    <addaction name="menu_2"/>
     <addaction name="pckMClr"/>
    </widget>
+   <widget class="QMenu" name="menu_grad">
+    <property name="title">
+     <string>Градиенты</string>
+    </property>
+    <widget class="QMenu" name="menu_4">
+     <property name="title">
+      <string>Выбрать градиент</string>
+     </property>
+     <addaction name="chkdCold"/>
+     <addaction name="chkdWarm"/>
+     <addaction name="chkdNeon"/>
+    </widget>
+    <addaction name="useGrad"/>
+    <addaction name="menu_4"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_grad"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="useGrad">

@@ -122,8 +122,6 @@ void sshowsub::openspm()
         char notifications[16][336];//Getting all notifications about stored fields of data.
         for(int i=0;i<field_amount;i++)
             data.readRawData(notifications[i], 336);
-        char fieldName[16][32], scaleXYname[16][6], scaleZname[16][6];//info from notifications about fields
-        float scaleX[16], scaleY[16], scaleZ[16];
         for(int i=0; i<field_amount;i++)//Getting that information.
         {
             strncpy(fieldName[i], notifications[i], 32);
@@ -372,6 +370,32 @@ void sshowsub::on_PickColorBut_clicked()
 void sshowsub::on_surfaceBut_clicked()
 {
     int index = ui->fieldselect->currentIndex();
-    surface3d = new surface(this, dataMuliplied[index], Nx[index], Ny[index]);
-    surface3d->show();
+    fixSlope = ui->toFixSlope->isChecked();
+    if(!fixSlope)
+    {
+        surface3d = new surface(this, dataMuliplied[index], scaleX[index], scaleY[index],
+                                scaleXYname[index],scaleZname[index], Nx[index], Ny[index]);
+        surface3d->show();
+    }
+    /*else
+    {
+        for(int i = 0; i < (Nx[index]*Ny[index]); i++)
+        {
+            dataFixed[i] = dataMuliplied[index][i];
+        }
+
+
+        for(int i=0;i<(Nx[index]*Ny[index]);i++)
+        {
+            if(dataFixed[i] != 0)
+            {
+                int x=i%Nx[index],y=floor(i/Nx[index]);
+                dataFixed[i] -= (((A*(x-pos1x))+(B*(y-pos1y)))/(C*(-1)))+pos1z;
+            }
+        }
+        //send dataFixed as data array to 3dSurface
+        surface3d = new surface(this, dataFixed, scaleX[index], scaleY[index],
+                                scaleXYname[index],scaleZname[index], Nx[index], Ny[index]);
+        surface3d->show();
+    }*/
 }

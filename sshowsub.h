@@ -23,11 +23,14 @@ public:
     char dataRaw[16][524288];//Place for raw data of fields from spm1 files. 2 bytes for each point. Max 256*256 points.
     quint16 dataShort[16][262144];//Same data but transformed into 16 bit integers.
     float dataMuliplied[16][262144];//Data after applying z-multiplier.
+    float dataFixed[262144];
     //32 is borderline amount of fields for that file format. The service info won't support more than 32.
     qint16 Nx[16],Ny[16];
     quint8 R=0,G=255,B=0;
     QImage field;
     QVector<qint16> avaliablePointsX, avaliablePointsY;
+    char fieldName[16][32], scaleXYname[16][6], scaleZname[16][6];//info from notifications about fields
+    float scaleX[16], scaleY[16], scaleZ[16];
     QVector<float> val;
     QVector<int> pointsX, pointsY, PointsCoordinastesStoredAsNumber;
     bool lockedSelection=false;
@@ -58,6 +61,7 @@ private:
     Ui::sshowsub *ui;
     QVector<showprofile*> proflist;
     surface *surface3d;
+    bool fixSlope = false;
     int openedprof = 0;
     void openspm();
     void showim(int num, int Nx, int Ny);

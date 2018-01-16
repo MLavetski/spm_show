@@ -41,7 +41,7 @@
    <widget class="QComboBox" name="fieldselect">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>88</x>
       <y>10</y>
       <width>121</width>
       <height>24</height>
@@ -58,6 +58,9 @@
       <width>121</width>
       <height>24</height>
      </size>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выбор поля&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ExitB">
@@ -234,6 +237,9 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Трехмерная модель&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -253,6 +259,31 @@
     </property>
     <property name="text">
      <string>fix slope?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveToStlBut">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>40</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

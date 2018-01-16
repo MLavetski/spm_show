@@ -126,6 +126,7 @@ void surface::applyColor()
     else
     {
         graph->seriesList().at(0)->setColorStyle(Q3DTheme::ColorStyleUniform);
+        graph->seriesList().at(0)->setBaseColor(mainColor);
         graph->activeTheme()->setType(Q3DTheme::Theme(selectedTheme));
         return;
     }

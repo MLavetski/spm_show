@@ -57,6 +57,8 @@ private slots:
 
     void on_surfaceBut_clicked();
 
+    void on_saveToStlBut_clicked();
+
 private:
     Ui::sshowsub *ui;
     QVector<showprofile*> proflist;

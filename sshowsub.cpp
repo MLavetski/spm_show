@@ -1,6 +1,7 @@
 #include "sshowsub.h"
 #include "ui_sshowsub.h"
 #include "surface.h"
+#include "triangles.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QMouseEvent>
@@ -284,7 +285,9 @@ void sshowsub::on_label_mouseMoved(int x, int y)
     int curInd = ui->fieldselect->currentIndex();
     int point = y*Nx[curInd]+x;
     float value = dataMuliplied[curInd][point];
-    QString coord = "x=" + QString::number(x) + "; " + "y=" + QString::number(y) + "; " + "value=" + QString::number(value);
+    QString coord = "x=" + QString::number(x*scaleX[curInd]) + scaleXYname[curInd] + "; "
+                  + "y=" + QString::number(y*scaleY[curInd]) + scaleXYname[curInd] + "; "
+                  + "value=" + QString::number(value) + scaleZname[curInd];
     statusBar()->showMessage(coord);
     for(int i=0;i<avaliablePointsX.size();i++)
     {
@@ -343,7 +346,7 @@ void sshowsub::on_label_doubleCicked(int x, int y)
 }
 
 
-void sshowsub::on_infoButton_clicked()
+void sshowsub::on_infoButton_clicked()//NEED to update
 {
     QMessageBox info;
     QString MT = NULL;
@@ -398,4 +401,90 @@ void sshowsub::on_surfaceBut_clicked()
                                 scaleXYname[index],scaleZname[index], Nx[index], Ny[index]);
         surface3d->show();
     }*/
+}
+
+void sshowsub::on_saveToStlBut_clicked()
+{
+    //We have an array of data witch can be repressented as matrix Ny by Nx
+    //that function takes points in said matrix in specified order(points MUST be CCW) to represent
+    //verticles of triangles, stores them in vector of triangle class objects, calls calcNormal function
+    //for each triange, and writes them into binary .stl file
+    quint16 index = ui->fieldselect->currentIndex();
+    quint16 sizeX = Nx[index], sizeY = Ny[index];
+    char header[80];
+    for(int i=0;i<80;i++)
+    {
+        header[i]=0;
+    }
+    quint32 amountTriangles = (sizeX-1)*(sizeY-1)*2;
+    QVector<triangle> triangles(amountTriangles);
+    int i=0;//counter for current triangle
+    for(int y=0;y<sizeY-1;y++)  //write coordinates into corresponding triangle
+    {                           //there are to types of triangles
+        for(int x=0;x<sizeX;x++)//flat side up and down
+        {
+            if(x!=0)//here we writing flat side down triangle
+            {
+                triangles[i].point3[0] = x*scaleX[index];
+                triangles[i].point3[1] = y*scaleY[index];
+                triangles[i].point3[2] = dataMuliplied[index][y*Nx[index]+x];
+                triangles[i].point2[0] = (x-1)*scaleX[index];
+                triangles[i].point2[1] = (y+1)*scaleY[index];
+                triangles[i].point2[2] = dataMuliplied[index][(y+1)*Nx[index]+(x-1)];
+                triangles[i].point1[0] = x*scaleX[index];
+                triangles[i].point1[1] = (y+1)*scaleY[index];
+                triangles[i].point1[2] = dataMuliplied[index][(y+1)*Nx[index]+x];
+                i++;
+            }
+            if(x!=sizeX-1)//here we writing flat side up triangle
+            {
+                triangles[i].point3[0] = x*scaleX[index];
+                triangles[i].point3[1] = y*scaleY[index];
+                triangles[i].point3[2] = dataMuliplied[index][y*Nx[index]+x];
+                triangles[i].point2[0] = x*scaleX[index];
+                triangles[i].point2[1] = (y+1)*scaleY[index];
+                triangles[i].point2[2] = dataMuliplied[index][(y+1)*Nx[index]+x];
+                triangles[i].point1[0] = (x+1)*scaleX[index];
+                triangles[i].point1[1] = y*scaleY[index];
+                triangles[i].point1[2] = dataMuliplied[index][y*Nx[index]+(x+1)];
+                i++;
+            }
+        }
+    }
+    for(quint32 j=0;j<amountTriangles;j++)
+    {
+        triangles[j].calcNorm();
+    }
+    triangle test[20];
+    for(int i=0;i<20;i++)
+        test[i] = triangles[i];
+    //alright, we got our triangles, lets write them into .stl file
+    int extPointPos = inputfilename.lastIndexOf(".");
+    QString outputfilename = inputfilename.left(extPointPos);
+    QFile file(outputfilename + ".stl");
+    file.open(QIODevice::WriteOnly);
+    QDataStream out(&file);   // we will serialize the data into the file
+    out.setByteOrder(QDataStream::LittleEndian);
+    out.writeRawData(header, 80);
+    out.writeRawData((char*)&amountTriangles,4);
+    for(quint32 i=0;i<amountTriangles;i++)
+    {
+        out.writeRawData((char*)&triangles[i].normal[0],4);
+        out.writeRawData((char*)&triangles[i].normal[1],4);
+        out.writeRawData((char*)&triangles[i].normal[2],4);
+        out.writeRawData((char*)&triangles[i].point1[0],4);
+        out.writeRawData((char*)&triangles[i].point1[1],4);
+        out.writeRawData((char*)&triangles[i].point1[2],4);
+        out.writeRawData((char*)&triangles[i].point2[0],4);
+        out.writeRawData((char*)&triangles[i].point2[1],4);
+        out.writeRawData((char*)&triangles[i].point2[2],4);
+        out.writeRawData((char*)&triangles[i].point3[0],4);
+        out.writeRawData((char*)&triangles[i].point3[1],4);
+        out.writeRawData((char*)&triangles[i].point3[2],4);
+        out.writeRawData((char*)&triangles[i].attrByteCount,2);
+    }
+    file.close();
+    QMessageBox yep;
+    yep.setText("yep");
+    yep.exec();
 }

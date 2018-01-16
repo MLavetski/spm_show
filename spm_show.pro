@@ -23,7 +23,8 @@ HEADERS  += sshow.h \
     sshowsub.h \
     showprofile.h \
     imlabel.h \
-    surface.h
+    surface.h \
+    triangles.h
 
 FORMS    += sshow.ui \
     sshowsub.ui \

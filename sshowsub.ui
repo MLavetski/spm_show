@@ -95,7 +95,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/new/icos/EXITICO.ico</normaloff>:/new/icos/EXITICO.ico</iconset>
+      <normaloff>:/new/icos/icons/EXITICO.ico</normaloff>:/new/icos/icons/EXITICO.ico</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="profBut">
@@ -133,7 +133,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/new/icos/BUILDPROFILEICO.ico</normaloff>:/new/icos/BUILDPROFILEICO.ico</iconset>
+      <normaloff>:/new/icos/icons/BUILDPROFILEICO.ico</normaloff>:/new/icos/icons/BUILDPROFILEICO.ico</iconset>
     </property>
    </widget>
    <widget class="imlabel" name="label">
@@ -190,7 +190,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/new/icos/HELPICO.ico</normaloff>:/new/icos/HELPICO.ico</iconset>
+      <normaloff>:/new/icos/icons/HELPICO.ico</normaloff>:/new/icos/icons/HELPICO.ico</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="PickColorBut">
@@ -225,7 +225,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/new/icos/POLORPICKERICO.ico</normaloff>:/new/icos/POLORPICKERICO.ico</iconset>
+      <normaloff>:/new/icos/icons/POLORPICKERICO.ico</normaloff>:/new/icos/icons/POLORPICKERICO.ico</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="surfaceBut">
@@ -245,7 +245,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/new/icos/3DICO.ico</normaloff>:/new/icos/3DICO.ico</iconset>
+      <normaloff>:/new/icos/icons/3DICO.ico</normaloff>:/new/icos/icons/3DICO.ico</iconset>
     </property>
    </widget>
    <widget class="QCheckBox" name="toFixSlope">

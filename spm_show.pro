@@ -34,7 +34,7 @@ FORMS    += sshow.ui \
 
 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.1
 
-RC_ICONS += "qr code.ico"
+RC_ICONS += "icons\\qr code.ico"
 
 RESOURCES += \
     resources.qrc

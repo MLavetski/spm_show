@@ -24,7 +24,7 @@ public:
     quint16 dataShort[16][262144];//Same data but transformed into 16 bit integers.
     float dataMuliplied[16][262144];//Data after applying z-multiplier.
     float dataFixed[262144];
-    //32 is borderline amount of fields for that file format. The service info won't support more than 32.
+    //16 is borderline amount of fields for that file format. The service info won't support more than 32.
     qint16 Nx[16],Ny[16];
     quint8 R=0,G=255,B=0;
     QImage field;

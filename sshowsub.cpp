@@ -458,31 +458,42 @@ void sshowsub::on_saveToStlBut_clicked()
     triangle test[20];
     for(int i=0;i<20;i++)
         test[i] = triangles[i];
-    //alright, we got our triangles, lets write them into .stl file
+    //ok, we got triangles ready, now write them into .stl file
+    //first, generate filemane for output file.
     int extPointPos = inputfilename.lastIndexOf(".");
     QString outputfilename = inputfilename.left(extPointPos);
-    QFile file(outputfilename + ".stl");
+    //then, we open the file with generatated name. If it doesn't exist, create it.
+    QFile file(outputfilename + "_" + fieldName[ui->fieldselect->currentIndex()] + ".stl");
     file.open(QIODevice::WriteOnly);
     QDataStream out(&file);   // we will serialize the data into the file
     out.setByteOrder(QDataStream::LittleEndian);
+    //write 80-byte header into file. In our case, header is filled with empty symbols.
     out.writeRawData(header, 80);
+    //write int with amount of triangles in file
     out.writeRawData((char*)&amountTriangles,4);
+    //write each triangle
     for(quint32 i=0;i<amountTriangles;i++)
     {
+        //first 3 dimensions of normal vector
         out.writeRawData((char*)&triangles[i].normal[0],4);
         out.writeRawData((char*)&triangles[i].normal[1],4);
         out.writeRawData((char*)&triangles[i].normal[2],4);
+        //3 dim. of first point
         out.writeRawData((char*)&triangles[i].point1[0],4);
         out.writeRawData((char*)&triangles[i].point1[1],4);
         out.writeRawData((char*)&triangles[i].point1[2],4);
+        //second point
         out.writeRawData((char*)&triangles[i].point2[0],4);
         out.writeRawData((char*)&triangles[i].point2[1],4);
         out.writeRawData((char*)&triangles[i].point2[2],4);
+        //third point
         out.writeRawData((char*)&triangles[i].point3[0],4);
         out.writeRawData((char*)&triangles[i].point3[1],4);
         out.writeRawData((char*)&triangles[i].point3[2],4);
+        //and the attribyte file count, witch, by default, is zero.
         out.writeRawData((char*)&triangles[i].attrByteCount,2);
     }
+    //then we close the output file and send notification of successfull conversion
     file.close();
     QMessageBox yep;
     yep.setText("yep");
